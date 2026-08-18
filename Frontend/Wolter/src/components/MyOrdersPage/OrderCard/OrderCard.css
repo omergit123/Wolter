@@ -1,0 +1,167 @@
+/* ==========================================================================
+   THEME VARIABLES DEFAULT (DARK THEME BY DEFAULT)
+   ========================================================================== */
+:root {
+    --order-card-bg: #18181c;
+    --order-card-border: rgba(255, 255, 255, 0.05);
+    --order-card-hover-border: rgba(0, 112, 243, 0.4);
+    --order-id-color: #55555c;
+    --order-qty-color: #94949a;
+    --order-text-main: #ffffff;
+    --order-btn-bg: #222227;
+    --order-btn-border: rgba(255, 255, 255, 0.08);
+    --order-btn-text: #e0e0e0;
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES (Triggers dynamically if .light-theme is present on body)
+   ========================================================================== */
+body.light-theme,
+[data-theme="light"] {
+    --order-card-bg: #ffffff;
+    --order-card-border: rgba(0, 0, 0, 0.08);
+    --order-card-hover-border: #0070f3;
+    --order-id-color: #94949a;
+    --order-qty-color: #66666c;
+    --order-text-main: #121214;
+    --order-btn-bg: #f5f5f7;
+    --order-btn-border: rgba(0, 0, 0, 0.06);
+    --order-btn-text: #333338;
+}
+
+/* ==========================================================================
+   MODERN ORDER CARD CONTAINER LAYOUT
+   ========================================================================== */
+.modern-order-card {
+    background: var(--order-card-bg);
+    border: 1px solid var(--order-card-border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 20px auto;
+    max-width: 550px;
+    width: 92%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    gap: 20px;
+    /* Kept clean of transform transitions to permanently block fixed modal positioning context bugs */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modern-order-card:hover {
+    border-color: var(--order-card-hover-border);
+    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   LEFT SIDE: PURE INFO CONTEXT BLOCK
+   ========================================================================== */
+.order-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.order-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modern-badge {
+    background-color: rgba(0, 112, 243, 0.12);
+    color: #0070f3;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modern-id {
+    color: var(--order-id-color);
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.order-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modern-qty {
+    color: var(--order-qty-color);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
+}
+
+.modern-price {
+    color: var(--order-text-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2px;
+    transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   RIGHT SIDE: UTILITY CONTROL BLOCK BUTTONS
+   ========================================================================== */
+.order-controls-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Shared styling values with update button to secure high-quality fluid aesthetics */
+.btn-delete {
+    background-color: var(--order-btn-bg);
+    border: 1px solid var(--order-btn-border);
+    color: var(--order-btn-text);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-sizing: border-box;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-delete:hover {
+    background-color: #ff3b30;
+    border-color: #ff3b30;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.35);
+}
+
+.btn-delete:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+   ========================================================================== */
+@media (max-width: 500px) {
+    .modern-order-card {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .modern-price {
+        font-size: 1.3rem;
+    }
+}

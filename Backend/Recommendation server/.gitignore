@@ -1,0 +1,35 @@
+# Build artifacts
+build/
+cmake_build_debug/
+cmake_build_release/
+*.o
+*.out
+*.exe
+*.dll
+*.so
+*.a
+
+# IDE
+.vscode/
+.idea/
+CMakeLists.txt.user
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Data (but keep directory structure)
+data/*
+!data/.gitkeep
+
+# Environment
+.env
+.env.local

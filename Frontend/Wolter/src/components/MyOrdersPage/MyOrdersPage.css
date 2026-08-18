@@ -1,0 +1,64 @@
+/* ==========================================================================
+   THEME VARIABLES INHERITANCE BACKUP
+   ========================================================================== */
+:root {
+    --order-page-text-main: #ffffff;
+    --order-page-text-muted: rgba(255, 255, 255, 0.7);
+    --order-page-error: #ef5350;
+    /* Modern slightly brighter red for dark mode */
+}
+
+body.light-theme,
+[data-theme="light"] {
+    --order-page-text-main: #121214;
+    --order-page-text-muted: rgba(18, 18, 20, 0.6);
+    --order-page-error: #e53935;
+    /* Classic structural alert red for light mode */
+}
+
+/* ==========================================================================
+   MAIN ORDERS PAGE LAYOUT CONTAINER
+   ========================================================================== */
+.orders-container {
+    padding: 40px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.orders-title {
+    color: var(--order-page-text-main);
+    /* Dynamically switches title color between white/black */
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    transition: color 0.2s ease;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ==========================================================================
+   ASYNC STATE FEEDBACK LABELS (LOADING, ERROR, EMPTY STATES)
+   ========================================================================== */
+.orders-loading,
+.orders-error,
+.orders-empty {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--order-page-text-muted);
+    transition: color 0.2s ease;
+}
+
+.orders-error {
+    color: var(--order-page-error);
+    /* Reactive error state tracking */
+    font-weight: 600;
+}

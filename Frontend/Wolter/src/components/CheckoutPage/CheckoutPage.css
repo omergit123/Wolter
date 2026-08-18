@@ -1,0 +1,271 @@
+/* ==========================================================================
+   THEME VARIABLES DEFAULT (DARK THEME BY DEFAULT)
+   ========================================================================== */
+:root {
+    --chk-bg-main: #141923;
+    /* Matching your dark mode card background */
+    --chk-border-main: rgba(255, 255, 255, 0.06);
+    --chk-border-sub: rgba(255, 255, 255, 0.08);
+    --chk-text-title: #ffffff;
+    --chk-text-item: #ffffff;
+    --chk-text-muted: #8a94a6;
+    --chk-qty-btn-bg: #222936;
+    --chk-qty-btn-border: rgba(255, 255, 255, 0.08);
+    --chk-qty-btn-text: #ffffff;
+    --chk-qty-btn-hover: #ffffff;
+    --chk-trash-hover: rgba(255, 59, 48, 0.15);
+    --chk-clear-btn-bg: #221a1a;
+    --chk-clear-btn-border: rgba(255, 59, 48, 0.3);
+    --chk-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES (Triggers if .light-theme is present on body)
+   ========================================================================== */
+body.light-theme,
+[data-theme="light"] {
+    --chk-bg-main: #ffffff;
+    --chk-border-main: #e2e8f0;
+    --chk-border-sub: #edf2f7;
+    --chk-text-title: #2d3748;
+    --chk-text-item: #4a5568;
+    --chk-text-muted: #a0aec0;
+    --chk-qty-btn-bg: #f7fafc;
+    --chk-qty-btn-border: #cbd5e0;
+    --chk-qty-btn-text: #2d3748;
+    --chk-qty-btn-hover: #2d3748;
+    --chk-trash-hover: #fff5f5;
+    --chk-clear-btn-bg: #fff5f5;
+    --chk-clear-btn-border: #e53e3e;
+    --chk-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS & WRAPPERS
+   ========================================================================== */
+.checkout-empty-container {
+    text-align: center;
+    padding: 50px;
+    font-family: sans-serif;
+    direction: ltr;
+    color: var(--chk-text-title);
+}
+
+.checkout-main-wrapper {
+    max-width: 480px;
+    /* Reduced from 600px to make it compact, tight and beautiful like the screenshot */
+    margin: 40px auto;
+    padding: 28px;
+    font-family: sans-serif;
+    direction: ltr;
+    border: 1px solid var(--chk-border-main);
+    border-radius: 20px;
+    /* Sweeter rounded corners */
+    box-shadow: var(--chk-shadow);
+    background-color: var(--chk-bg-main);
+    box-sizing: border-box;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkout-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--chk-border-sub);
+    padding-bottom: 16px;
+    color: var(--chk-text-title);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.checkout-items-list {
+    margin: 12px 0 24px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   PRODUCT ROW - LOCKED GRID SOLUTION (Prevents wrapping/clipping)
+   ========================================================================== */
+.checkout-item-row {
+    display: grid;
+    grid-template-columns: 1.2fr auto 1fr;
+    /* Strict 3-column split layout grid */
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--chk-border-sub);
+    gap: 16px;
+}
+
+.checkout-item-details {
+    min-width: 0;
+    /* Safeguard text clipping */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.checkout-item-name {
+    color: var(--chk-text-item);
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Gracefully clip if name is insanely long */
+}
+
+.checkout-item-unit-price {
+    font-size: 0.8rem;
+    color: var(--chk-text-muted);
+}
+
+/* Quantity Controls Alignment */
+.checkout-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+
+.checkout-qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--chk-qty-btn-border);
+    background: var(--chk-qty-btn-bg);
+    color: var(--chk-qty-btn-text);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.checkout-qty-btn:hover {
+    background-color: var(--chk-qty-btn-hover);
+    color: var(--chk-bg-main);
+    border-color: var(--chk-qty-btn-hover);
+}
+
+.checkout-qty-display {
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-width: 16px;
+    text-align: center;
+    color: var(--chk-text-item);
+}
+
+/* Price & Trash interactions alignment row */
+.checkout-price-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.checkout-row-total {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--chk-text-item);
+    white-space: nowrap;
+}
+
+.checkout-trash-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--chk-text-muted);
+    transition: all 0.15s ease;
+}
+
+.checkout-trash-btn:hover {
+    background-color: var(--chk-trash-hover);
+    color: #ff3b30;
+}
+
+/* ==========================================================================
+   SUMMARY FOOTER & ACTION BUTTONS
+   ========================================================================== */
+.checkout-summary-footer {
+    border-top: 1px solid var(--chk-border-sub);
+    padding-top: 16px;
+}
+
+.checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.checkout-total-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--chk-text-muted);
+}
+
+.checkout-total-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #00a3e0;
+    /* Premium Wolt Blue statements */
+}
+
+/* Fixed Actions Layout alignment block */
+.checkout-action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.checkout-clear-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--chk-clear-btn-border);
+    color: #ff3b30;
+    background: var(--chk-clear-btn-bg);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+}
+
+.checkout-clear-btn:hover {
+    background-color: #ff3b30;
+    border-color: #ff3b30;
+    color: #ffffff;
+}
+
+.checkout-submit-btn {
+    flex: 2;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    color: #ffffff;
+    background: #00a3e0;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0, 163, 224, 0.2);
+    transition: all 0.15s ease;
+}
+
+.checkout-submit-btn:hover {
+    background-color: #008ec4;
+    box-shadow: 0 6px 20px rgba(0, 163, 224, 0.35);
+}
+
+.checkout-submit-btn:disabled,
+.checkout-clear-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+}

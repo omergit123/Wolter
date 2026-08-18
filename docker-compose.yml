@@ -1,0 +1,47 @@
+services:
+    cpp-backend:
+        build:
+            context: "./Backend/Recommendation server"
+        ports:
+            - "8080:8080"
+        volumes:
+            - "./Backend/Recommendation server/data:/app/data"
+        restart: always
+
+    mongodb:
+        image: mongo:latest
+        container_name: local-mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo-data:/data/db
+            - ./Backend/init-db:/docker-entrypoint-initdb.d:ro
+        restart: always
+
+    mvc-server:
+        build:
+            context: "./Backend/MVC-server"
+        ports:
+            - "3000:3000"
+        depends_on:
+            - cpp-backend
+            - mongodb
+        volumes:
+            - ./Backend/MVC-server:/app
+            - /app/node_modules
+            - ./Backend/MVC-server/src/public/uploads:/app/src/public/uploads
+        restart: always
+
+    frontend:
+        build:
+            context: "./Frontend/Wolter"
+            dockerfile: Dockerfile
+        container_name: frontend_app
+        ports:
+            - "4000:4000"
+        depends_on:
+            - mvc-server
+        restart: always
+
+volumes:
+    mongo-data:

@@ -1,0 +1,256 @@
+/* ==========================================================================
+   THEME VARIABLES DEFAULT (DARK THEME BY DEFAULT)
+   ========================================================================== */
+:root {
+    --modal-bg: #121214;
+    --modal-border: rgba(255, 255, 255, 0.08);
+    --modal-item-bg: #1a1a1e;
+    --modal-item-border: rgba(255, 255, 255, 0.03);
+    --modal-text-title: #ffffff;
+    --modal-text-body: #e0e0e0;
+    --order-btn-bg: #222227;
+    --order-btn-border: rgba(255, 255, 255, 0.08);
+    --order-btn-text: #e0e0e0;
+    --order-qty-color: #66666c;
+}
+
+/* ==========================================================================
+   LIGHT MODE OVERRIDES (Triggers if .light-theme is present on body)
+   ========================================================================== */
+body.light-theme,
+[data-theme="light"] {
+    --modal-bg: #ffffff;
+    --modal-border: rgba(0, 0, 0, 0.1);
+    --modal-item-bg: #f9f9fb;
+    --modal-item-border: rgba(0, 0, 0, 0.04);
+    --modal-text-title: #121214;
+    --modal-text-body: #333338;
+    --order-btn-bg: #f5f5f7;
+    --order-btn-border: rgba(0, 0, 0, 0.06);
+    --order-btn-text: #333338;
+    --order-qty-color: #94949a;
+}
+
+/* ==========================================================================
+   MAIN ACTION BUTTON STYLES
+   ========================================================================== */
+.btn-update {
+    background-color: var(--order-btn-bg);
+    border: 1px solid var(--order-btn-border);
+    color: var(--order-btn-text);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-update:hover {
+    background-color: #0070f3;
+    border-color: #0070f3;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 112, 243, 0.3);
+}
+
+/* ==========================================================================
+   MODAL OVERLAY (FORCED TO CENTER OF VIEWPORT - FIXED GEOMETRY FLOATS)
+   ========================================================================== */
+.update-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+/* ==========================================================================
+   MODAL WINDOW BOX CONTAINER (EXPANDED PROPORTIONS)
+   ========================================================================== */
+.update-modal-content {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--modal-border);
+    padding: 32px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 600px;
+    /* Expanded dynamically to give product names full horizontal span */
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    color: var(--modal-text-title);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    animation: fadeInModalScale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.update-modal-content h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal-order-sub {
+    font-size: 0.85rem;
+    color: var(--order-qty-color);
+    margin: 0 0 24px 0;
+    text-align: center;
+}
+
+/* ==========================================================================
+   PRODUCTS ITEMS COUNTER LIST
+   ========================================================================== */
+.modal-products-list {
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Locked Grid Layout: guarantees text strings and counter button blocks never distort proportions */
+.modal-body-counter {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    /* Item title consumes all left space, controls stay locked right */
+    align-items: center;
+    background-color: var(--modal-item-bg);
+    border: 1px solid var(--modal-item-border);
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    gap: 20px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Fixed: Product name displays fully without cutting off text or glitching on hover */
+.product-label-name {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--modal-text-body);
+    text-align: left;
+    white-space: normal;
+    /* Permits safe natural string wrapping */
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.quantity-picker-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.qty-picker-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    /* Square ergonomics to look crisp and premium */
+    border: 1px solid var(--order-btn-border);
+    background-color: var(--order-btn-bg);
+    color: var(--order-btn-text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.15s ease;
+}
+
+.qty-picker-btn:hover:not(:disabled) {
+    background-color: var(--modal-text-title);
+    color: var(--modal-bg);
+    border-color: var(--modal-text-title);
+}
+
+.qty-picker-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.qty-picker-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    color: var(--modal-text-title);
+    transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   ACTION BUTTONS FOOTER
+   ========================================================================== */
+.modal-actions-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.modal-btn-cancel {
+    background-color: transparent;
+    border: 1px solid var(--order-btn-border);
+    color: var(--order-qty-color);
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+}
+
+.modal-btn-cancel:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--modal-text-title);
+}
+
+body.dark-theme .modal-btn-cancel:hover,
+[data-theme="dark"] .modal-btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.modal-btn-save {
+    background-color: #0070f3;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 14px rgba(0, 112, 243, 0.3);
+    transition: all 0.15s ease;
+}
+
+.modal-btn-save:hover {
+    background-color: #0060df;
+    box-shadow: 0 6px 20px rgba(0, 112, 243, 0.45);
+}
+
+/* Smooth scaling and fade animation */
+@keyframes fadeInModalScale {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

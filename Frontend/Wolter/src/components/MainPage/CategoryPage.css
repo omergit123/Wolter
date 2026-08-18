@@ -1,0 +1,92 @@
+.page {
+    width: min(1080px, calc(100% - 32px));
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 38px 0 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.backButton {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.backButton:hover,
+.backButton:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(217, 119, 6, 0.35);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
+    outline: none;
+}
+
+.page h2 {
+    margin: 0;
+    padding-bottom: 18px;
+    color: var(--text);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+}
+
+.not-found-message p,
+.page > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin-top: 18px;
+}
+
+.card {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+.card:hover,
+.card:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.11);
+    border-color: rgba(217, 119, 6, 0.28);
+}
+
+.not-found-message {
+    padding: 24px 18px;
+    border-radius: 18px;
+    border: 1px dashed var(--border);
+    background: var(--surface);
+    text-align: center;
+}

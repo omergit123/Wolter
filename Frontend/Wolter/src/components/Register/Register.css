@@ -1,0 +1,224 @@
+.register-wrapper {
+    min-height: calc(100vh - 84px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    background: var(--bg-gradient);
+}
+
+.register-container {
+    width: min(560px, 100%);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+}
+
+.register-container h2 {
+    margin: 0 0 1.5rem;
+    color: var(--text);
+    font-size: clamp(2.2rem, 4vw, 2.7rem);
+    font-weight: 900;
+}
+
+.avatar-upload-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.avatar-preview {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px dashed var(--border);
+    background: var(--input-bg);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.avatar-preview:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.upload-hint {
+    margin-top: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.form-group label,
+.section-label {
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.location-section {
+    flex: 1;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.05rem;
+    border-radius: 16px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 141, 255, 0.14);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    color: var(--button-text);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    transition: filter 0.25s ease;
+}
+
+.btn-submit:hover {
+    filter: brightness(1.04);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+}
+
+.modal-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface, #1e222b);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius, 16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    max-width: 380px;
+    width: 85%;
+    text-align: center;
+    z-index: 10000;
+    animation: modalPopInUp 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-icon {
+    font-size: 40px;
+    margin-bottom: 0.5rem;
+}
+
+.modal-box h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text, #fff);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.modal-box p {
+    color: var(--muted, #a0aec0);
+    font-size: 0.95rem;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+}
+
+.btn-modal-close {
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 100%;
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-modal-close:active {
+    transform: scale(0.98);
+}
+
+.error-modal {
+    border-top: 5px solid #e53e3e;
+}
+.error-modal .btn-modal-close {
+    background: #e53e3e;
+}
+.error-modal .btn-modal-close:hover {
+    background: #c53030;
+}
+
+.success-modal {
+    border-top: 5px solid #38a169;
+}
+.success-modal .btn-modal-close {
+    background: #38a169;
+}
+.success-modal .btn-modal-close:hover {
+    background: #2f855a;
+}
+
+@keyframes modalPopInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.form-group select option {
+    background-color: var(--surface, #1e222b);
+    color: var(--text, #ffffff);
+}
+
+.form-group select option:disabled {
+    color: var(--muted, #a0aec0);
+}

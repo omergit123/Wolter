@@ -1,0 +1,109 @@
+.create-restaurant-form-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.create-restaurant-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.create-restaurant-form-header h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+}
+
+.btn-create-restaurant {
+    border: none;
+    border-radius: 999px;
+    padding: 0.95rem 1.4rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    color: var(--button-text);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-create-restaurant:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.create-form-container {
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+.create-restaurant-form {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.create-restaurant-form .form-group {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.create-restaurant-form .form-group label {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.create-restaurant-form .form-group input,
+.create-restaurant-form .form-group textarea,
+.create-restaurant-form .form-group select {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text);
+    padding: 1rem 1.1rem;
+}
+
+.create-restaurant-form .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.create-restaurant-form .btn-cancel,
+.create-restaurant-form .btn-submit {
+    border: none;
+    border-radius: 999px;
+    padding: 0.95rem 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.create-restaurant-form .btn-cancel {
+    background: var(--surface-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.create-restaurant-form .btn-submit {
+    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    color: var(--button-text);
+}
+
+.create-restaurant-form .btn-cancel:hover,
+.create-restaurant-form .btn-submit:hover {
+    filter: brightness(1.04);
+}
+
+@media (max-width: 768px) {
+    .create-restaurant-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
