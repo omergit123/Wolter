@@ -1,4 +1,4 @@
-const products = require("../services/products");
+﻿const products = require("../services/products");
 const {
     postProductValidator,
     updateProductValidator,
@@ -42,6 +42,25 @@ const getProductById = async (req, res, next) => {
     }
 };
 
+const getRecommendations = async (req, res, next) => {
+    try {
+        const productId = req.params.productId || req.params.pid;
+        const userId = req.user.userId;
+
+        const result = await products.getRecommendations(userId, productId);
+
+        if (!result || !result.success) {
+            return res
+                .status(result?.status || 500)
+                .json({ error: result?.message || "Failed to get recommendations" });
+        }
+
+        res.json(result.data);
+    } catch (error) {
+        next(error);
+    }
+};
+
 const postProduct = async (req, res, next) => {
     try {
         const { isValid, message } = postProductValidator(req.body);
@@ -73,7 +92,7 @@ const updateProduct = async (req, res, next) => {
         }
 
         const restaurantId = req.params.id;
-        const productId = req.params.pid;
+        const productId = req.params.productId || req.params.pid;
 
         const product = await products.updateProduct(
             restaurantId,
@@ -94,7 +113,7 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
     try {
         const restaurantId = req.params.id;
-        const productId = req.params.pid;
+        const productId = req.params.productId || req.params.pid;
 
         const output = await products.deleteProduct(restaurantId, productId);
 
@@ -111,6 +130,7 @@ const deleteProduct = async (req, res, next) => {
 module.exports = {
     getAllProducts,
     getProductById,
+    getRecommendations,
     postProduct,
     updateProduct,
     deleteProduct,

@@ -1,86 +1,124 @@
-.page {
-    width: min(1080px, calc(100% - 32px));
+﻿.product-page-container {
+    width: min(1180px, calc(100% - 32px));
     min-height: 100vh;
     margin: 0 auto;
-    padding: 3.5rem 0 5rem;
+    padding: 3rem 0 5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.5rem;
 }
 
-.backButton {
-    align-self: flex-start;
-    margin-bottom: 0.75rem;
-    padding: 0.95rem 1.2rem;
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+.product-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
 }
 
-.backButton:hover,
-.backButton:focus-visible {
-    transform: translateY(-2px);
-    border-color: rgba(79, 141, 255, 0.35);
-    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
-    outline: none;
+.product-page-title-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.page h2 {
+.product-page-container h2 {
     margin: 0;
-    padding-bottom: 1.1rem;
     color: var(--text);
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 900;
     letter-spacing: -0.02em;
     text-transform: capitalize;
 }
 
-.not-found-message p,
-.page>p {
+.restaurant-badge {
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    background: rgba(79, 141, 255, 0.12);
+    border: 1px solid rgba(79, 141, 255, 0.28);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+}
+
+.restaurant-sub-desc {
     margin: 0;
     color: var(--muted);
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    max-width: 720px;
 }
 
-.list {
+.menu-meta-bar {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.card {
-    padding: 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-items-count {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.menu-hint-text {
+    font-size: 0.88rem;
+    color: var(--muted);
+}
+
+/* Card Grid for the Restaurant Menu */
+.product-grid,
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.backButton {
+    align-self: flex-start;
+    padding: 0.75rem 1.25rem;
     background: var(--surface);
     color: var(--text);
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover,
-.card:focus-within {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card);
-    border-color: rgba(79, 141, 255, 0.28);
+.backButton:hover,
+.backButton:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(79, 141, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    outline: none;
 }
 
 .not-found-message {
-    padding: 1.5rem 1.2rem;
+    grid-column: 1 / -1;
+    padding: 3rem 1.5rem;
     border-radius: 22px;
     border: 1px dashed var(--border);
     background: var(--surface);
     text-align: center;
+}
+
+.not-found-message p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+.menu-loading-state {
+    padding: 2.5rem 0;
+    color: var(--muted);
+    font-size: 1.05rem;
 }

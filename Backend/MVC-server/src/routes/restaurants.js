@@ -1,3 +1,4 @@
+const productsController = require("../controllers/products");
 const router = require("express").Router();
 
 const restaurants = require("../controllers/restaurants");
@@ -16,6 +17,10 @@ router.post("/", restaurants.postRestaurant);
 
 // Nested routes for products related to a specific restaurant - all routes in productsRouter need restaurant ID.
 router.use("/:id/products", productsRouter);
+router.get("/:id/recommendations/:productId", productsController.getRecommendations);
+router.get("/:id/recommendations/:pid", productsController.getRecommendations);
+router.get("/:id/recommandations/:productId", productsController.getRecommendations);
+router.get("/:id/recommandations/:pid", productsController.getRecommendations);
 
 router.get("/nearbyRestaurants", restaurants.getNearbyRestaurants);
 router.get("/userOwner/:userId", restaurants.getUserOwnerRestaurants);
