@@ -15,6 +15,10 @@ router.use(checkRestaurantExists);
 // Declaration of routes for products, each route calls the relevant controller function
 router.get("/", products.getAllProducts);
 router.post("/", products.postProduct);
+router.get("/recommendations/:productId", products.getRecommendations);
+router.get("/recommendations/:pid", products.getRecommendations);
+router.get("/recommandations/:productId", products.getRecommendations);
+router.get("/recommandations/:pid", products.getRecommendations);
 router.get("/:pid", products.getProductById);
 router.patch("/:pid", products.updateProduct);
 router.delete("/:pid", products.deleteProduct);

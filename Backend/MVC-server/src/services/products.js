@@ -1,4 +1,4 @@
-const Product = require("../model/products");
+﻿const Product = require("../model/products");
 const orders = require("../services/orders");
 const socket = require("./socket");
 
@@ -28,7 +28,10 @@ const getProductPriceById = async (restaurantId, productId) => {
 
 const getProductById = async (userId, restaurantId, productId) => {
     try {
-        const output = await Product.findOne({ restaurantId, _id: productId });
+        let output = await Product.findOne({ restaurantId, _id: productId });
+        if (!output) {
+            output = await Product.findById(productId);
+        }
 
         if (!output) {
             return {
@@ -51,6 +54,29 @@ const getProductById = async (userId, restaurantId, productId) => {
             success: true,
             status: 200,
             message: "Product found",
+            data: output,
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+const getRecommendations = async (userId, productId) => {
+    try {
+        // Ensure user and product exist in recommendation engine
+        await socket.addProduct(userId, productId);
+
+        const output = await socket.getRecommendations(userId, productId);
+        if (output === null || output === false) {
+            return {
+                success: true,
+                status: 200,
+                data: [],
+            };
+        }
+        return {
+            success: true,
+            status: 200,
             data: output,
         };
     } catch (error) {
@@ -144,6 +170,7 @@ const getProductsByName = async (query) => {
 module.exports = {
     getAllProducts,
     getProductById,
+    getRecommendations,
     postProduct,
     updateProduct,
     deleteProduct,

@@ -3,14 +3,19 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const cors = require("cors");
-
 const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://mongodb:27017/orders_db")
     .then(() => console.log("Connected to MongoDB inside Docker!"))
     .catch(err => console.error(err));
 
+const auth = require("./middleware/auth");
+const { checkRestaurantExists } = require("./middleware/restaurantMiddleware");
+const { checkUserExists } = require("./middleware/userCheckMiddleware");
+const productsController = require("./controllers/products");
+
 const restaurants = require("./routes/restaurants");
+const productsRouter = require("./routes/products");
 const search = require("./routes/search");
 const orders = require("./routes/orders");
 const users = require("./routes/users");
@@ -27,11 +32,24 @@ app.use(cors());
 app.use("/uploads", express.static(path.resolve(__dirname, "..", "uploads")));
 
 app.use("/api/restaurants", restaurants);
+app.use("/api/:id/products", productsRouter);
+app.get(
+    [
+        "/api/:restaurantId/recommendations/:productId",
+        "/api/:restaurantId/recommandations/:productId",
+        "/api/restaurants/:restaurantId/recommendations/:productId",
+        "/api/restaurants/:restaurantId/recommandations/:productId",
+    ],
+    auth,
+    checkUserExists,
+    checkRestaurantExists,
+    productsController.getRecommendations
+);
+
 app.use("/api/search", search);
 app.use("/api/orders", orders);
 app.use("/api/users", users);
 app.use("/api/tokens", tokens);
-
-app.listen(3000, '0.0.0.0', () => {
+	app.listen(3000, "0.0.0.0", () => {
     console.log("Server is running on port 3000 and listening to all network interfaces!");
 });
